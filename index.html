@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Project</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Sample data
+        const laptops = [
+            { manufacturer: 'Dell', model: 'Latitude', screenSize: '15 inches', color: 'Silver', ramSize: '8GB' },
+            { manufacturer: 'Dell', model: 'Inspiron', screenSize: '15 inches', color: 'Black', ramSize: '16GB' },
+            { manufacturer: 'Dell', model: 'XPS', screenSize: '13 inches', color: 'Silver', ramSize: '16GB' },
+            { manufacturer: 'Dell', model: 'Precision', screenSize: '17 inches', color: 'Black', ramSize: '32GB' },
+            { manufacturer: 'Dell', model: 'Alienware', screenSize: '17 inches', color: 'Blue', ramSize: '32GB' },
+            { manufacturer: 'HP', model: 'Pavilion', screenSize: '14 inches', color: 'White', ramSize: '12GB' },
+            { manufacturer: 'HP', model: 'Envy', screenSize: '15 inches', color: 'Gold', ramSize: '16GB' },
+            { manufacturer: 'Lenovo', model: 'ThinkPad', screenSize: '14 inches', color: 'Black', ramSize: '16GB' },
+            { manufacturer: 'Lenovo', model: 'IdeaPad', screenSize: '13 inches', color: 'Silver', ramSize: '8GB' },
+            { manufacturer: 'Apple', model: 'MacBook Pro', screenSize: '13 inches', color: 'Space Gray', ramSize: '16GB' },
+        ];
+
+        // Save data to local storage
+        localStorage.setItem('laptops', JSON.stringify(laptops));
+
+        // Retrieve data from local storage
+        const storedLaptops = JSON.parse(localStorage.getItem('laptops'));
+
+        // Filter by Ram Size
+        const filteredByRam = storedLaptops.filter(laptop => laptop.ramSize === '16GB');
+
+        // Filter by Screen Size
+        const filteredByScreen = storedLaptops.filter(laptop => laptop.screenSize === '15 inches');
+
+        // Sort by Colour
+        const sortedByColor = storedLaptops.slice().sort((a, b) => a.color.localeCompare(b.color));
+
+        // Sort by Manufacturer
+        const sortedByManufacturer = storedLaptops.slice().sort((a, b) => a.manufacturer.localeCompare(b.manufacturer));
+
+        // Sort by Model
+        const sortedByModel = storedLaptops.slice().sort((a, b) => a.model.localeCompare(b.model));
+
+        // Display the results
+        console.log('All Laptops:', storedLaptops);
+        console.log('Filtered by Ram Size (16GB):', filteredByRam);
+        console.log('Filtered by Screen Size (15 inches):', filteredByScreen);
+        console.log('Sorted by Colour:', sortedByColor);
+        console.log('Sorted by Manufacturer:', sortedByManufacturer);
+        console.log('Sorted by Model:', sortedByModel);
+    </script>
+</body>
+</html>
